@@ -5,7 +5,7 @@ using namespace std;
 bool isValid(vector<int> &arr, int maxAlloc, int n, int k)
 {
     int pages = 0, student = 1;
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)//O(n)
     {
         if (arr[i] > maxAlloc)
             return false;
@@ -28,15 +28,15 @@ int findPages(vector<int> &arr, int k)
     if (k > arr.size())
         return -1;
     int sum = 0, ans, n = arr.size();
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)// O(n)
     {
         sum += arr[i];
     }
     int start = 0, end = sum;
-    while (start <= end)
+    while (start <= end) // O(logn)
     {
         int mid = start + (end - start) / 2;
-        if (isValid(arr, mid, n, k))
+        if (isValid(arr, mid, n, k))//O(n)
         {
             ans = mid;
             end = mid - 1;
@@ -51,7 +51,7 @@ int findPages(vector<int> &arr, int k)
 
 int main()
 {
-    vector<int> arr = {2, 3, 1, 4};
+    vector<int> arr = {15, 17, 20};
     int m = 2;
     cout << findPages(arr, 2);
     return 0;

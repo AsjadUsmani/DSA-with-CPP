@@ -27,6 +27,52 @@ vector<int> searchRange(vector<int> &nums, int target)
     return ans;
 }
 
+// First and Last position in sorted array
+vector<int> searchRange(vector<int> &nums, int target)
+{
+    vector<int> result = {-1, -1};
+    int left = binarySearch(nums, target, true);
+    int right = binarySearch(nums, target, false);
+    result[0] = left;
+    result[1] = right;
+    return result;
+}
+
+int binarySearch(vector<int> &nums, int target, bool isSearchingLeft)
+{
+    int left = 0;
+    int right = nums.size() - 1;
+    int idx = -1;
+
+    while (left <= right)
+    {
+        int mid = left + (right - left) / 2;
+
+        if (nums[mid] > target)
+        {
+            right = mid - 1;
+        }
+        else if (nums[mid] < target)
+        {
+            left = mid + 1;
+        }
+        else
+        {
+            idx = mid;
+            if (isSearchingLeft)
+            {
+                right = mid - 1;
+            }
+            else
+            {
+                left = mid + 1;
+            }
+        }
+    }
+
+    return idx;
+}
+
 // Sinle element in a sorted array
 int singleElement(vector<int> nums)
 {
@@ -74,7 +120,7 @@ int singleElement(vector<int> nums)
 
 int main()
 {
-    vector<int> nums = {1,1,2,3,3,4,4,8,8};
+    vector<int> nums = {1, 1, 2, 3, 3, 4, 4, 8, 8};
     singleElement(nums);
     return 0;
 }
