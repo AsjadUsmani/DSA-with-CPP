@@ -1,13 +1,16 @@
 #include<iostream>
 using namespace std;
 
-void printNum(int n) {
-    if(n == 1){
-        cout << 1;
+void printNum(int n){
+    int count = 1;
+    if(n == 1) {
+        cout << " " << n;
         return;
     }
-    cout << n << " ";
-    printNum(n - 1);
+    else {
+        cout << n << " ";
+        printNum(n - 1);
+    }
 }
 
 int fact(int n){
