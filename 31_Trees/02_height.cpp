@@ -31,22 +31,20 @@ Node *buildTree(vector<int> preorder)
 
 int height(Node *root)
 {
-    if (root == NULL)
-        return 0;
-    int heightLeft = 1 + height(root->left);
-    int heightRight = 1 + height(root->right);
-    return max(heightLeft, heightRight);
+    if(root == NULL) return 0;
+    return max(height(root -> left), height(root -> right)) + 1;
 }
 
 int countNodes(Node* root){
     if(root == NULL) return 0;
-    return 1 + countNodes(root -> left) + countNodes(root -> right);
+    return countNodes(root -> left) + countNodes(root -> right) + 1;
 }
 
 int sumOfNodes(Node* root){
     if(root == NULL) return 0;
-    return root -> data + sumOfNodes(root -> left) + sumOfNodes(root -> right);
+    return sumOfNodes(root -> left) + sumOfNodes(root -> right) + root -> data;
 }
+
 int main()
 {
     vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
